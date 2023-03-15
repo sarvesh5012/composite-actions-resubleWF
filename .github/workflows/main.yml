@@ -5,13 +5,14 @@ on:
   workflow_call:
     inputs: 
       bucket_name:
-     
-      required: true
+        required: true
          
     secrets:
-       AWS_ACCESS_KEY_ID:
-          required: true
-      
+      AWS_ACCESS_KEY_ID:
+        required: true
+
+      AWS_SECRET_ACCESS_KEY:
+        required: true
 
     
      
@@ -38,4 +39,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-1
       - name: Copy files to the production website with the AWS CLI
-        run: aws s3 sync build s3://testreactappons3/ 
+        uses: sarvesh5012/hello-composite-actions/s3bucketaction@main
+        with:
+          bucket_name: ${{inputs.bucket_name}}

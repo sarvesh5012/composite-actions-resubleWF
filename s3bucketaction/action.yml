@@ -1,0 +1,13 @@
+name: s3bucket_action
+description: 'bucket name'
+inputs:
+  bucket_name:
+    description: 'bucket name'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - run: aws s3 sync build s3://${{inputs.bucket_name}}/
+      shell: bash
+    
