@@ -6,12 +6,13 @@ on:
     inputs: 
       bucket_name:
         required: true
+        type: string
          
     secrets:
-      AWS_ACCESS_KEY_ID:
+      AWS_ACCESS_KEY:
         required: true
 
-      AWS_SECRET_ACCESS_KEY:
+      AWS_SECRET_ACCESS:
         required: true
 
     
@@ -35,8 +36,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS }}
           aws-region: us-west-1
       - name: Copy files to the production website with the AWS CLI
         uses: sarvesh5012/hello-composite-actions/s3bucketaction@main
